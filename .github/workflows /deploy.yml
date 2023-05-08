@@ -28,7 +28,7 @@ jobs:
       # Set up Node.js and npm
       - uses: actions/setup-node@v1
         with:
-          node-version: '14'
+          node-version: "14"
           registry-url: https://registry.npmjs.org/
 
       # Deploy the application to Vercel
