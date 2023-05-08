@@ -13,8 +13,14 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <nav className="supports-backdrop-blur:bg-white/60 sticky top-0 z-40 w-full border-b bg-white/95 shadow-sm backdrop-blur">
-          <div className="container flex h-14 items-center">
-            <span className="font-bold">Styleguide</span>
+          <div className="container flex h-14 items-center gap-6">
+            <Link href="/styleguide">
+              <span className="font-bold">Styleguide</span>
+            </Link>
+
+            <Link href="/">
+              <span className="text-sm font-medium">Home</span>
+            </Link>
           </div>
         </nav>
 
