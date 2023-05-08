@@ -1,0 +1,44 @@
+name: Deploy to Vercel
+
+on:
+  # Trigger the workflow when a new release is published
+  release:
+    types: [published]
+
+  # Trigger the workflow when pushing to the main or master branch, or when manually triggered
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+
+jobs:
+  vercel:
+    runs-on: ubuntu-latest
+    name: Deploy application
+
+    # Set up a matrix with the main and master branch names
+    strategy:
+      matrix:
+        ref: [master]
+
+    steps:
+      # Check out the repository code
+      - uses: actions/checkout@v2
+
+      # Set up Node.js and npm
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '14'
+          registry-url: https://registry.npmjs.org/
+
+      # Deploy the application to Vercel
+      - name: Deploy application
+        # Use the "if" conditional to check if the branch matches the matrix value
+        if: github.ref == 'refs/heads/${{ matrix.ref }}'
+        env:
+          # Set the VERCEL_TOKEN environment variable to the secret value
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+        run:
+          # Deploy the application with the Vercel CLI
+          # Use the $VERCEL_TOKEN environment variable instead of the --token parameter for security
+          npx vercel --token $VERCEL_TOKEN --prod --yes --force
