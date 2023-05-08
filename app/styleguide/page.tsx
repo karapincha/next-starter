@@ -31,6 +31,12 @@ export default function Page() {
           >
             <div className="text-xl font-medium">Logo</div>
           </Link>
+          <Link
+            className="flex w-full rounded border border-gray-200 p-10 hover:bg-gray-50"
+            href="/styleguide/icons"
+          >
+            <div className="text-xl font-medium">Icons</div>
+          </Link>
         </div>
       </div>
     </main>

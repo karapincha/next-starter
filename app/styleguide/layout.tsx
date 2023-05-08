@@ -39,6 +39,9 @@ export default function RootLayout({
               <Link href="/styleguide/typography">
                 <span>Typography</span>
               </Link>
+              <Link href="/styleguide/icons">
+                <span>Icons</span>
+              </Link>
             </div>
           </aside>
 
