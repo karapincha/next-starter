@@ -1,53 +1,37 @@
-import tailwindConfig from '@/tailwind.config.js'
-import resolveConfig from 'tailwindcss/resolveConfig'
-
-const fullTwConfig = resolveConfig(tailwindConfig)
-const colors = Object.entries(fullTwConfig.theme?.colors ?? {})
-
-const renderColors = (colors: any) => {
-  if (!colors) return null
-
-  return (
-    <div className="flex w-full flex-wrap gap-10">
-      {colors.map(([colorName, shades]: any) => {
-        if (typeof shades === 'string') return
-        const colorShades = Object.entries(shades)
-
-        return (
-          <div key={colorName} className="flex w-full gap-2">
-            <h2 className="w-24 text-sm font-medium capitalize">{colorName}</h2>
-            <div className="flex w-full gap-2">
-              {colorShades.map(([shadeName, shadeColor]: any) => (
-                <div
-                  key={shadeName}
-                  className="flex w-full flex-col font-mono text-sm"
-                >
-                  <div
-                    className="mb-2 flex h-12 w-full rounded"
-                    style={{
-                      backgroundColor: shadeColor,
-                    }}
-                  />
-                  <span>{shadeName}</span>
-                  <span className="opacity-50">{shadeColor}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        )
-      })}
-    </div>
-  )
-}
+import Link from 'next/link'
 
 export default function Page() {
   return (
     <main className="container flex min-h-screen flex-col gap-10 p-24">
-      <h1 className="text-4xl font-bold">Styleguide</h1>
+      <div className="prose mx-auto w-full">
+        <h1 className="text-5xl font-semibold">Styleguide</h1>
 
-      <div className="flex flex-col gap-10">
-        <h2 className="text-2xl">Colors</h2>
-        <div className="flex flex-wrap">{renderColors(colors)}</div>
+        <p>
+          This is a styleguide for the design system of this project. It is
+          intended to be used as a reference for the design system, and as a
+          playground for the design system.
+        </p>
+
+        <div className="grid w-full grid-cols-2 gap-10 pt-10">
+          <Link
+            className="flex w-full rounded border border-gray-200 p-10 hover:bg-gray-50"
+            href="/styleguide/colors"
+          >
+            <div className="text-xl font-medium">Colors</div>
+          </Link>
+          <Link
+            className="flex w-full rounded border border-gray-200 p-10 hover:bg-gray-50"
+            href="/styleguide/typography"
+          >
+            <div className="text-xl font-medium">Typography</div>
+          </Link>
+          <Link
+            className="flex w-full rounded border border-gray-200 p-10 hover:bg-gray-50"
+            href="/styleguide/logo"
+          >
+            <div className="text-xl font-medium">Logo</div>
+          </Link>
+        </div>
       </div>
     </main>
   )
