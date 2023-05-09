@@ -11,11 +11,9 @@ export function TextField(props: AriaTextFieldProps & { className?: string }) {
 
   return (
     <div className={cn('flex w-full flex-col gap-1', className)}>
-      {label && (
-        <label {...labelProps} className="font-medium">
-          {label}
-        </label>
-      )}
+      <label {...labelProps} className="font-medium">
+        {label}
+      </label>
 
       <input
         {...inputProps}
@@ -23,13 +21,13 @@ export function TextField(props: AriaTextFieldProps & { className?: string }) {
         className="w-full rounded border p-2 text-sm font-normal"
       />
 
-      {props.description && (
+      {props?.description && (
         <div {...descriptionProps} style={{ fontSize: 12 }}>
           {props.description}
         </div>
       )}
 
-      {props.errorMessage && (
+      {props?.errorMessage && (
         <div {...errorMessageProps} style={{ color: 'red', fontSize: 12 }}>
           {props.errorMessage}
         </div>
